@@ -14,7 +14,7 @@ router.post('/categories/save',(req,res)=>{
             title:title,
             slug:slugify(title)
         }).then(()=>{
-            res.redirect('/')
+            res.redirect('/admin/categories')
         })
 
     }else{
@@ -28,6 +28,23 @@ Category.findAll().then(categories=>{
     res.render("admin/categories/CategoriesIndex",{categories:categories})
 
 })
+
+})
+
+router.post("/categories/delete",(req,res)=>{
+
+    var id = req.body.id;
+    if(id!= undefined){
+        if(!id.isNaN){
+            Category.destroy({
+                where:{
+                    id:id
+                }
+            }).then(()=>{res.redirect("/admin/categories")});
+
+
+        }else{res.redirect("/admin/categories")}
+    }else{res.redirect("/admin/categories")}
 
 })
 
