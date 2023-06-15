@@ -13,7 +13,7 @@ const Category = require("./categories/Category");
 app.set('view engine', 'ejs');
 
 //usando os arquivos estaticos
-app.use(express.static('public'));
+app.use(express.static("public"));
 
 //configurando o body parser para trabalhar com formularios
 app.use(bodyParser.urlencoded({ extended: false }));
