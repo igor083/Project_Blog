@@ -3,7 +3,8 @@ const router = express.Router();
 
 
 router.get('/admin/articles/new', function (req, res) {
-    res.send("Rota para criar um articles");
+    res.render("admin/articles/new");
 })
+
 
 module.exports = router;
