@@ -29,14 +29,15 @@
                             <th>
                                 <%=category.slug %>
                             </th>
-                            <th >
-                    
-                        <input type="hidden">
+                            <th>
+
+                                <input type="hidden">
                                 <a href="/admin/categories/edit/<%= category.id %>" class="btn btn-warning">Edit</a>
 
-                                <form method="post" action="/categories/delete" style="display: inline;" onsubmit="confirmDelete(event,this)">
+                                <form method="post" action="/categories/delete" style="display: inline;"
+                                    onsubmit="confirmDelete(event,this)">
 
-                                    <input type="hidden" name="id" value="<%= category.id %>" >
+                                    <input type="hidden" name="id" value="<%= category.id %>">
                                     <button class="btn btn-dark">Delete</button>
 
                                 </form>
@@ -52,12 +53,12 @@
         </div>
 
         <%- include('../../partials/footer.ejs') %>
-        <script>
-            function confirmDelete(event,form){
-                event.preventDefault();
-                var decision = confirm("Do you want delete this category?");
-                if(decision){
-                    form.submit();
+            <script>
+                function confirmDelete(event, form) {
+                    event.preventDefault();
+                    var decision = confirm("Do you want delete this category?");
+                    if (decision) {
+                        form.submit();
+                    }
                 }
-            }
-        </script>
+            </script>

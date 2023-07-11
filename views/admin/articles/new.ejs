@@ -1,6 +1,6 @@
 <%- include("../../partials/header") %>
 
-<%- include('../../partials/navbar') %>
+<%- include('../../partials/navbarAdmin') %>
 
 
 <div class="container">
@@ -16,6 +16,17 @@
                 <input class="form-control" type="text" name="title" placeholder="Defina o título da artigo: ">
                 <br>
                 <textarea id="article" class="form-control" name="body" placeholder="Digite o conteúdo do arquivo."></textarea>
+                <br>
+                <label>Categoria: </label>
+                
+                <select name="category" class="form-control">
+                    <% categories.forEach((category)=>{ %>
+                        <option value="<%= category.id%>"><%= category.title %> </option>
+
+                    <% })%>
+                
+                </select>
+                
                 <br>
                 <button class="btn btn-success">Cadastrar</button>
     
