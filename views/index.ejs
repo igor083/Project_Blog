@@ -1,3 +1,34 @@
 <%- include('partials/header') %>
-<%- include('partials/navbar') %>
-<%- include('partials/footer') %>
+   <%- include('partials/navbarAdmin') %>
+
+      <body>
+         <div class="container">
+            <br>
+            <div class="jumbotron">
+               <h1 class="display-4">Welcome to BlogPress</h1>
+               <p class="lead">Project developed for training and qualification for Node tools
+                  and frameworks.</p>
+               <hr class="my-4">
+               <p>Uma descrição adicional.</p>
+               <a class="btn btn-primary btn-lg" href="#" role="button">Saiba mais</a>
+            </div>
+
+            <% articles.forEach(article=> { %>
+               <div class="card">
+                  <div class="card-header">
+                     <h2>
+                        <%= article.title%>
+                     </h2>
+
+                  </div>
+                  <div class="card-body">
+                     <a href="/<%=article.slug%>" class="btn btn-success">Read the article</a>
+                  </div>
+               </div>
+               <br>
+               <% }); %>
+
+         </div>
+      </body>
+
+      <%- include('partials/footer') %>
