@@ -34,6 +34,8 @@
                                 <%= article.categoryId%>
                             </td>
                             <td>
+                              <input type="hidden">
+                                <a href="/admin/articles/edit/<%= article.id %>" class="btn btn-warning">Edit</a>
                                 <form method="post" action="/articles/delete" style="display: inline;"
                                     onsubmit="confirmDelete(event,this)">
 

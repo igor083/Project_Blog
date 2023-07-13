@@ -1,0 +1,29 @@
+<%- include('../../partials/header') %>
+
+<%- include('../../partials/navbar') %>
+
+
+<div class="container">
+    <hr>
+    <div class="card">
+        <div class="card-header">
+            <h2>Edit article</h2>
+        </div>
+        <div class="card-body">
+
+            <form method="post" action="/articles/update">
+    
+                <input class="form-control" type="text" name="title" placeholder="Define the title of article" value="<%= article.title%>">
+                <input type="hidden" name="id" value="<%= article.id%>">
+               
+                <input class="form-control" type="text" name="body" placeholder="Define the body of article" value="<%= article.body%>">
+                <input type="hidden" name="id" value="<%= article.id%>">
+                <button class="btn btn-success">Update article</button>
+    
+            </form>
+        </div>
+    </div>
+
+</div>
+
+<%- include('../../partials/footer') %>
