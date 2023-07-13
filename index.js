@@ -21,11 +21,11 @@ app.use(bodyParser.json());
 
 //conectando o banco de dados
 connection.authenticate()
-    .then(() => {
-        console.log("Conexao feita");
-    }).catch((error) => {
-        console.log(error);
-    })
+   .then(() => {
+      console.log("Conexao feita");
+   }).catch((error) => {
+      console.log(error);
+   })
 
 
 //rotas
@@ -34,30 +34,59 @@ app.use("/", categoriesController);//usando as rotas que estao dentro do arquivo
 app.use("/", articlesController);//usando as rotas que estao dentro do arquivo articles controller
 
 app.get("/", (req, res) => {
-    Article.findAll().then(articles => {
-        res.render('index',{articles:articles});
+   Article.findAll({
+      order: [['id', 'DESC']]
+   }).then(articles => {
+      Category.findAll().then(categories => {
 
-    })
+         res.render('index', { articles: articles, categories: categories });
+      })
+
+   })
 })
 
-app.get("/:slug",(req,res)=>{
-    var slug = req.params.slug;
-    Article.findOne({
-        where:{
-            slug:slug
-        }
-    }).then(article=>{
-        if(article != undefined){
-            res.render("article",{article:article});
-        }else res.redirect("/");
+app.get("/:slug", (req, res) => {
+   var slug = req.params.slug;
+   Article.findOne({
+      where: {
+         slug: slug
+      }
+   }).then(article => {
+      if (article != undefined) {
+         Category.findAll().then(categories => {
 
-    }).catch(erro =>{
-        res.redirect("/");
-    })
+            res.render('article', { article: article, categories: categories });
+         })
+      } else res.redirect("/");
+
+   }).catch(erro => {
+      res.redirect("/");
+   })
 
 
 })
 
+app.get("/category/:slug", (req, res) => {
+
+   var slug = req.params.slug;
+   Category.findOne({
+      where: {
+         slug: slug
+      },
+      include: [{ model: Article }]
+   }).then(category => {
+      if (category != undefined) {
+         Category.findAll().then(categories=>{
+            res.render("index",{articles:category.articles,categories:categories})
+         })
+      } else {
+         res.redirect("/");
+      }
+   
+}).catch(err => {
+   res.redirect("/")
+})
+})
 app.listen(8080, () => {
-    console.log("Servidor rodando");
+   console.log("Servidor rodando");
 })

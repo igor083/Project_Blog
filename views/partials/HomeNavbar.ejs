@@ -4,7 +4,14 @@
         <img width="120" height="35" src="Photos/logo.png" alt="logo">
     </a>
      <ul class="navbar-nav mr-auto">
-            <a class="nav-link" href="/">Home <a>
+
+         <% categories.forEach( category=>{%>
+
+            <li class="nav-item">
+               <a class="nav-link" href="/category/<%= category.slug %>"> <%= category.title%> <a>
+      
+            </li>
+        <% }) %>
        
      </ul>
     </nav>
